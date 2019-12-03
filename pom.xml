@@ -14,13 +14,18 @@
     </parent>
     <groupId>com.springframework</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
     <name>pet-clinic</name>
     <description>Pet Clinic Project</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/jovanibrasil/pet-clinic.git</developerConnection>
+        <tag>pet-clinic-0.0.3</tag>
+    </scm>
 
     <build>
         <plugins>
@@ -42,10 +47,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <scm>
-        <developerConnection>scm:git:https://github.com/jovanibrasil/pet-clinic.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
 </project>
