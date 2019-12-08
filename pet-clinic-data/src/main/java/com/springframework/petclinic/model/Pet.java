@@ -2,6 +2,8 @@ package com.springframework.petclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pets")
@@ -15,6 +17,8 @@ public class Pet extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "pet_type_id")
     private PetType petType;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private List<Visit> visits = new ArrayList<>();
 
     public PetType getPetType() {
         return petType;
@@ -46,5 +50,13 @@ public class Pet extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 }
