@@ -46,7 +46,6 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-
         <!-- webjars -->
         <dependency>
             <groupId>org.webjars</groupId>
