@@ -6,7 +6,7 @@ import com.springframework.petclinic.services.VisitService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Profile("jpa")
+@Profile("springdatajpa")
 @Service
 public class VisitJpaService extends  AbstractJpaService<Visit, Long, VisitRepository> implements VisitService {
 

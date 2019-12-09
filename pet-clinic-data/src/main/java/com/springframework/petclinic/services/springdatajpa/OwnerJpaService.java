@@ -6,7 +6,7 @@ import com.springframework.petclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Profile("jpa")
+@Profile("springdatajpa")
 @Service
 public class OwnerJpaService  extends  AbstractJpaService<Owner, Long, OwnerRepository>  implements OwnerService {
 

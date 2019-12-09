@@ -5,6 +5,7 @@ import com.springframework.petclinic.model.Owner;
 import com.springframework.petclinic.services.CrudService;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public abstract class AbstractJpaService<T extends BaseEntity, ID extends Long,
 
     @Override
     public Set<T> findAll() {
-        return (Set<T>) repository.findAll();
+        return new HashSet<T>((Collection<? extends T>) repository.findAll());
     }
 
     @Override
