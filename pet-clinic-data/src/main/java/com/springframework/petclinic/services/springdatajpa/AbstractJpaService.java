@@ -1,7 +1,6 @@
 package com.springframework.petclinic.services.springdatajpa;
 
 import com.springframework.petclinic.model.BaseEntity;
-import com.springframework.petclinic.model.Owner;
 import com.springframework.petclinic.services.CrudService;
 import org.springframework.data.repository.CrudRepository;
 
