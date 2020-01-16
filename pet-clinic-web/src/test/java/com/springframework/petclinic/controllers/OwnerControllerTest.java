@@ -100,7 +100,7 @@ class OwnerControllerTest {
     @Test
     void processUpdateOwnerForm() throws Exception {
         when(this.ownerService.save(any())).thenReturn(Owner.builder().id(1L).build());
-        this.mockMvc.perform(post("/owners/edit"))
+        this.mockMvc.perform(post("/owners/1/edit"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"))
                 .andExpect(model().attributeExists("owner"));
