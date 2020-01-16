@@ -17,8 +17,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -41,13 +43,13 @@ class OwnerControllerTest {
         this.ownerSet.add(Owner.builder().id(1L).lastName("First").build());
         this.ownerSet.add(Owner.builder().id(2L).lastName("Second").build());
         this.mockMvc = MockMvcBuilders
-                .standaloneSetup(ownerController)
+                .standaloneSetup(this.ownerController)
                 .build();
     }
 
     @Test
     void listOwner() throws Exception {
-        when(this.ownerService.findAll()).thenReturn(ownerSet);
+        when(this.ownerService.findAll()).thenReturn(this.ownerSet);
         this.mockMvc.perform(MockMvcRequestBuilders.get("/owners/index"))
                 .andExpect(status().is(200)) // isOk()
                 .andExpect(view().name("owners/index"))
@@ -59,7 +61,16 @@ class OwnerControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/owners/find"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("notimplemented"));
-        Mockito.verifyNoInteractions(ownerService);
+        Mockito.verifyNoInteractions(this.ownerService);
+    }
+
+    @Test
+    void displayOwner() throws Exception {
+        when(this.ownerService.findById(anyLong())).thenReturn(Owner.builder().id(1L).lastName("First").build());
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/owners/123"))
+                .andExpect(status().is(200)) // isOk()
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attribute("owner", hasProperty("id", is(1L))));
     }
 
 }
