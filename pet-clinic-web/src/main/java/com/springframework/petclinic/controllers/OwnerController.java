@@ -21,7 +21,7 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping("/find")
+    @GetMapping("/find")
     public String findOwner(Model model){
         model.addAttribute("owner", Owner.builder().build());
         return "owners/findOwners";

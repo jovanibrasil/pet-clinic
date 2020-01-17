@@ -94,7 +94,7 @@ class OwnerControllerTest {
                 .andExpect(status().is(200)) // isOk()
                 .andExpect(view().name("owners/createOrUpdateOwnerForm"))
                 .andExpect(model().attributeExists("owner"));
-        //verify(this.ownerService).save(ArgumentMatchers.any());
+        verify(this.ownerService).findById(ArgumentMatchers.any());
     }
 
     @Test
@@ -104,7 +104,7 @@ class OwnerControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"))
                 .andExpect(model().attributeExists("owner"));
-        //verify(this.ownerService).save(ArgumentMatchers.any());
+        verify(this.ownerService).save(ArgumentMatchers.any());
     }
 
     @Test
@@ -124,7 +124,7 @@ class OwnerControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"))
                 .andExpect(model().attributeExists("owner"));
-        //verify(this.ownerService).save(ArgumentMatchers.any());
+        verify(this.ownerService).save(ArgumentMatchers.any());
     }
 
 

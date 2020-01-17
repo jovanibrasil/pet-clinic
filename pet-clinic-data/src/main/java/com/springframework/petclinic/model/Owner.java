@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +30,18 @@ public class Owner extends Person {
         this.address = address;
         this.city = city;
         this.telephone = telephone;
-        this.pets = pets;
+
+        if(pets != null) {
+            this.pets = pets;
+        }
+
+    }
+
+    public Pet getPet(String name, boolean ignoreNew) {
+        for (Pet pet : this.pets) {
+            if(ignoreNew && pet.isNew()) continue;
+            if(pet.getName().equalsIgnoreCase(name)) return pet;
+        }
+        return null;
     }
 }
