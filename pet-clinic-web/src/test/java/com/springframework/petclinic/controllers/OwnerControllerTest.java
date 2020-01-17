@@ -73,8 +73,20 @@ class OwnerControllerTest {
                 .thenReturn(Arrays.asList(Owner.builder().id(1L).lastName("First").build()));
         this.mockMvc.perform(get("/owners"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/1"))
-        ;
+                .andExpect(view().name("redirect:/owners/1"));
+    }
+
+    @Test
+    void processFindFormEmptyLastNameReturnMany() throws Exception {
+        when(this.ownerService.findAllByLastNameLike(anyString()))
+                .thenReturn(Arrays.asList(
+                        Owner.builder().id(1L).lastName("First").build(),
+                        Owner.builder().id(2L).lastName("Second").build()));
+        this.mockMvc.perform(get("/owners")
+                .param("lastName", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownersList"))
+                .andExpect(model().attribute("selections", hasSize(2)));
     }
 
     @Test
