@@ -1,12 +1,8 @@
 package com.springframework.petclinic.services.map;
 
 import com.springframework.petclinic.model.Owner;
-import com.springframework.petclinic.services.PetService;
-import com.springframework.petclinic.services.PetTypeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
